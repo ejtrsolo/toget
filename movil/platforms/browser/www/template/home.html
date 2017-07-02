@@ -1,0 +1,15 @@
+<!-- Mapa de google -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUcvGAX-s1qleVcwawNUFaJwrklWt7oMg"></script>
+<div class="content" flex-container="row" flex-align="center center" >
+    <div flex-item="12">
+        <!-- <div id="map"></div> -->
+        <div map-lazy-load="https://maps.googleapis.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
+            <ng-map  center="41,-87" zoom="3"></ng-map>
+        </div>
+    </div>
+</div>
+<style>
+.map, ng-map{
+    height: {{alto}}px !important;
+}
+</style>

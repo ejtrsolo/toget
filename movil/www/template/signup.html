@@ -1,0 +1,58 @@
+<div flex-container="row" class="fondo-cordova" flex-align="center center">
+    <div flex-item="9" class="top-space-padding botton-space-padding" align="center" >
+        <img src="img/logo.png" alt="Bienvenida">
+        <span class="fs-display-1 display-block">{{app_name}}</span>
+    </div>
+</div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <form ng-submit="savePost()" class="width-full">
+        <div layout="row">
+            <md-card class="width-full">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{section}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-input-container class="md-block">
+                        <label>Nombre</label>
+                        <input ng-model="user.name" type="email">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+                        <input ng-model="user.email" type="email">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Estado</label>
+                        <md-select ng-model="user.state">
+                            <md-option ng-repeat="state in states" value="{{state.id}}">
+                                {{state.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start" class="text-center">
+                    <!-- <md-card-icon-actions>
+                        <md-button ng-href="http://www.facebook.com" target="_blank" class="icon-btn-width">
+                            <lx-icon lx-id="facebook" lx-size="l" lx-color="blue" lx-type="flat"></lx-icon>
+                        </md-button>
+                        <md-button ng-href="http://plus.google.com"  target="_blank" class="icon-btn-width">
+                            <lx-icon lx-id="google-plus-box" lx-size="l" lx-color="red" lx-type="flat"></lx-icon>
+                        </md-button>
+                    </md-card-icon-actions> -->
+                    <md-button type="submit" class="md-primary md-raised btn-lg">
+                        Registrar
+                    </md-button>
+                    <p class="text-redes">- Ó -</p>
+                    <md-button type="submit" class="md-raised bg-blue btn-lg top-space-btn">
+                        <lx-icon lx-id="facebook" lx-size="l" lx-color="white" lx-type="flat"></lx-icon>Facebook
+                    </md-button>
+                    <md-button type="submit" class="md-raised bg-red btn-lg">
+                        <lx-icon lx-id="google-plus-box" lx-size="l" lx-color="white" lx-type="flat"></lx-icon> Google
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </form>
+</md-content>

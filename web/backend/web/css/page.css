@@ -1,0 +1,86 @@
+.main-page{
+    background: url("../images/fondo5.jpg") no-repeat center fixed;
+}
+.designed-by{
+    position: absolute;
+    /*bottom: 0 !important;*/
+    color: white;
+    right: 0 !important;
+    margin: 12px;
+}
+.transparent{
+    background: rgba(255, 255, 255, 0.7) !important;
+}
+.title-logo{
+    color: white !important;
+    font-size: 150%;
+    text-shadow: -4px 0px 3px rgba(150,150,150,1);
+}
+.login-box{
+    margin: 5% auto !important;
+}
+.title-section{
+    color: #3c8dbc;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.hr-mine{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.login-box, .register-box{
+    width: 450px !important;
+}
+.login-box-msg, .register-box-msg{
+    font-size: 18px;
+    font-weight: bold;
+}
+.marginb10{
+    margin-bottom: 10px;
+}
+.color{
+    -webkit-box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.75); 
+    -moz-box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.75); 
+    box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.75); 
+    height: 30px; 
+    width: 30px; 
+    margin-right: 20px;
+}
+.sidebar-mine{
+    text-shadow: 2px 0px 6px #000,-2px 0px 6px #000;
+}
+.sidebar a {
+    color: #b9e9ff;
+}
+.treeview-menu .sidebar-mine {
+    color: #b8c7ce;
+}
+.treeview-menu .active .sidebar-mine {
+    color: #fff;
+}
+.direct-chat .box-body {
+    overflow-x: visible !important;
+}
+.direct-chat-messages {
+    height: auto !important;
+}
+.treeview-menu .hover:hover{
+    background-color: rgba(50, 50, 50, 0.5) !important;
+}
+.content-header{
+    margin-top: 40px;
+}
+.box-header .direct-chat-name.pull-right{
+    margin-right: 6px;
+    margin-top: 10px;
+}
+.box-header .direct-chat-name.pull-left{
+    margin-left: 6px;
+    margin-top: 10px;
+}
+.widget-user .widget-user-image>img{
+    height:90px !important;
+}
+.file-footer-buttons .kv-file-upload.btn.btn-xs.btn-default{
+    display: none !important;
+}

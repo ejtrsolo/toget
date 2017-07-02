@@ -1,0 +1,42 @@
+Options -Indexes
+Options +FollowSymlinks
+RewriteEngine On
+
+# deal with super first
+RewriteCond %{REQUEST_URI} ^/proyects/yiired/(super)
+RewriteRule ^super/assets/(.*)$ backend/web/assets/$1 [L]
+RewriteRule ^super/css/(.*)$ backend/web/css/$1 [L]
+RewriteRule ^super/js/(.*)$ backend/web/js/$1 [L]
+RewriteRule ^super/images/(.*)$ backend/web/images/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/proyects/yiired/backend/web/(assets|css|js|images)/
+RewriteCond %{REQUEST_URI} ^/proyects/yiired/(super)
+RewriteRule ^.*$ backend/web/index.php [L]
+
+
+RewriteCond %{REQUEST_URI} ^/proyects/yiired/(assets|css|images)
+RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/proyects/yiired/(frontend|backend)/web/(assets|css|js|images)/
+RewriteCond %{REQUEST_URI} !index.php
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ frontend/web/index.php
+
+#<IfModule mod_rewrite.c>
+#  RewriteEngine on
+
+#  RewriteCond %{REQUEST_URI} !^public
+#  RewriteRule ^(.*)$ frontend/web/$1 [L]
+#</IfModule>
+
+# Deny accessing below extensions
+<Files ~ "(.json|.lock|.git)">
+Order allow,deny
+Deny from all
+</Files>
+
+# Deny accessing dot files
+RewriteRule (^\.|/\.) - [F]

@@ -1,0 +1,165 @@
+<md-content class="md-padding" layout="row">
+    <form ng-submit="saveTravel()" class="width-full">
+        <div layout="row">
+            <md-card class="width-full">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{section}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <lx-date-picker ng-model="Travel.date" lx-input-format="L" lx-locale="es" lx-min-date="minDate">
+                        <lx-text-field lx-allow-clear="true" lx-label="Fecha">
+                            <input type="text" ng-model="datePicker.input.dateFormatted">
+                        </lx-text-field>
+                    </lx-date-picker>
+                    <div layout="row" class="class-frame" layout-wrap layout-fill style=" padding-top: 24px;" ng-cloak>
+                        <div class="padded class-item-frame" md-whiteframe="1" flex="{{part3}}">
+                            <md-input-container class="md-block">
+                                <label>Hora</label>
+                                <md-select ng-model="Travel.hour">
+                                    <md-option ng-repeat="hour in hours" value="{{hour}}">
+                                        {{hour}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="padded class-item-frame" md-whiteframe="2" flex="{{part3}}">
+                            <md-input-container class="md-block">
+                                <label>Minuto</label>
+                                <md-select ng-model="Travel.minute">
+                                    <md-option ng-repeat="minute in minutes" value="{{minute}}">
+                                        {{minute}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="padded class-item-frame" md-whiteframe="3" flex="{{part3}}">
+                            <md-input-container class="md-block">
+                                <!-- <label>am/pm</label> -->
+                                <md-select ng-model="Travel.type" aria-label="am/pm">
+                                    <md-option ng-repeat="type in types" value="{{type}}">
+                                        {{type}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <md-input-container class="md-block" ng-click="openDialog(dialogIdInicio)">
+                        <label>Punto de inicio</label>
+                         <md-icon md-svg-src="img/icons/map-marker.svg" style="margin-top: -3px; color:#F00;" aria-label="Punto de inicio"></md-icon>
+                        <!-- <lx-icon lx-id="map-marker" lx-size="s" lx-color="red" lx-type="flat"></lx-icon> -->
+                        <input type="text" ng-model="Travel.inicio" disabled>
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-click="openDialog(dialogIdFin)">
+                        <label>Punto de fin</label>
+                         <md-icon md-svg-src="img/icons/map-marker.svg" style="margin-top: -3px; color:#F00;" aria-label="Punto de inicio"></md-icon>
+                        <!-- <lx-icon lx-id="map-marker" lx-size="s" lx-color="red" lx-type="flat"></lx-icon> -->
+                        <input type="text" ng-model="Travel.inicio" disabled>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Estado</label>
+                        <md-select ng-model="user.state">
+                            <md-option ng-repeat="state in states" value="{{state.id}}">
+                                {{state.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start" class="text-center">
+                    <md-button type="submit" class="md-primary md-raised">
+                        Guardar
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </form>
+</md-content>
+<lx-dialog id="{{ dialogIdInicio }}">
+    <lx-dialog-header>
+        <div class="toolbar accent-color pl++">
+            <span class="toolbar__label tc-white fs-title">
+                Seleccionar punto de inicio
+            </span>
+
+            <div class="toolbar__right">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" lx-dialog-close>
+                    <i class="mdi mdi-close"></i>
+                </lx-button>
+            </div>
+        </div>
+        <lx-tabs class="dark-primary-color" lx-panes-id="lorem-ipsum" lx-active-tab="activeTab" lx-links="[{label: 'Dirección'}, {label: 'Mapa'}]" lx-theme="dark" lx-color="orange" lx-indicator="yellow"></lx-tabs>
+    </lx-dialog-header>
+
+    <lx-dialog-content>
+        <lx-tabs-panes id="lorem-ipsum">
+            <lx-tab-pane>
+                <div class="p++">
+                    <lx-search-filter lx-autocomplete="autocomplete" lx-icon="{{autocompleteIcon}}"  lx-on-select="displaySelectedValue" lx-search-on-focus="true">
+                        <input type="text" ng-model="inicio" placeholder="Buscar">
+                    </lx-search-filter>
+                </div>
+            </lx-tab-pane>
+
+            <lx-tab-pane>
+                <div class="p++">
+                    <p>Lorem Ipsum Content 2</p>
+
+                    <lx-text-field label="Description">
+                        <textarea ng-model="textFields.description"></textarea>
+                    </lx-text-field>
+                </div>
+            </lx-tab-pane>
+        </lx-tabs-panes>
+    </lx-dialog-content>
+
+    <lx-dialog-footer>
+        <lx-button lx-color="black" lx-type="flat" lx-dialog-close>Cancel</lx-button>
+        <lx-button lx-type="flat" lx-dialog-close>Ok</lx-button>
+    </lx-dialog-footer>
+</lx-dialog>
+<lx-dialog id="{{ dialogIdFin }}">
+    <lx-dialog-header>
+        <div class="toolbar accent-color pl++">
+            <span class="toolbar__label tc-white fs-title">
+                Seleccionar punto de fin
+            </span>
+
+            <div class="toolbar__right">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" lx-dialog-close>
+                    <i class="mdi mdi-close"></i>
+                </lx-button>
+            </div>
+        </div>
+
+        <lx-tabs lx-panes-id="lorem-ipsum" lx-active-tab="activeTab" lx-links="[{label: 'Dirección'}, {label: 'Mapa'}]" lx-theme="dark" lx-color="orange" lx-indicator="yellow"></lx-tabs>
+    </lx-dialog-header>
+
+    <lx-dialog-content>
+        <lx-tabs-panes id="lorem-ipsum">
+            <lx-tab-pane>
+                <div class="p++">
+                    <div ng-repeat="person in vm.people">
+                        {{ person.name }} - {{ person.email }} - {{ person.age }}
+                    </div>
+                </div>
+            </lx-tab-pane>
+
+            <lx-tab-pane>
+                <div class="p++">
+                    <p>Lorem Ipsum Content 2</p>
+
+                    <lx-text-field label="Description">
+                        <textarea ng-model="textFields.description"></textarea>
+                    </lx-text-field>
+                </div>
+            </lx-tab-pane>
+        </lx-tabs-panes>
+    </lx-dialog-content>
+
+    <lx-dialog-footer>
+        <lx-button lx-color="black" lx-type="flat" lx-dialog-close>Cancel</lx-button>
+        <lx-button lx-type="flat" lx-dialog-close>Ok</lx-button>
+    </lx-dialog-footer>
+</lx-dialog>

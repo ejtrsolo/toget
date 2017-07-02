@@ -1,0 +1,27 @@
+<div flex-container="row" class="fondo-cordova" flex-align="center center">
+    <div flex-item="9" class="top-space-padding botton-space-padding" align="center" >
+        <img src="img/logo.png" alt="Bienvenida">
+        <span class="fs-display-1 display-block">{{app_name}}</span>
+    </div>
+</div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <form ng-submit="savePost()" class="width-full">
+        <div layout="row">
+            <md-card class="width-full">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{section}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <lx-text-field lx-label="" lx-fixed-label="true" lx-icon="phone">
+                        <input type="text" ng-model="data.phone" ui-mask="+52 (999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                    </lx-text-field>
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start">
+                    <md-button type="submit" class="md-raised md-primary btn-lg">Registrar</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </form>
+</md-content>

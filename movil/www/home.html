@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Facebook Login</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/velocity/velocity.js"></script>
+    <script src="bower_components/moment/min/moment-with-locales.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+
+    <!-- <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova_plugins.js"></script> -->
+</head>
+<body>
+    <div ng-app="facebookApp">
+        <div ng-controller="mainCtrl">
+            <section layout="row" flex>
+                <md-toolbar style="position:fixed;"><span>My Title</span></md-toolbar>
+                <md-sidenav style="position:fixed;" align="begin" mode="push" #sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                    </md-toolbar>
+                    <md-content layout-padding ng-controller="LeftCtrl">
+                        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                            Close Sidenav Left
+                        </md-button>
+                    </md-content>
+
+                </md-sidenav>
+                <md-sidenav-layout>
+                    <md-content flex layout-padding>
+
+                        <div layout="column" style="margin-top:52px;" layout-align="top center">
+                            <div>
+                                <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>
+                                    Toggle left
+                                </md-button>
+                            </div>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+                            <p>
+                                The left sidenav will 'lock open' on a medium (>=960px wide) device.
+                            </p>
+                            <p>
+                                The right sidenav will focus on a specific child element.
+                            </p>
+
+                        </div>
+
+                        <div flex></div>
+
+                    </md-content>
+
+                </md-sidenav-layout>
+
+
+            </section>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    angular.module("facebookApp", ['ngMaterial'])
+    .controller("mainCtrl", function($scope, $timeout, $mdSidenav, $log) {
+        $scope.toggleLeft = buildDelayedToggler('left');
+        $scope.toggleRight = buildToggler('right');
+        $scope.isOpenRight = function(){
+            return $mdSidenav('right').isOpen();
+        };
+
+        /**
+        * Supplies a function that will continue to operate until the
+        * time is up.
+        */
+        function debounce(func, wait, context) {
+            var timer;
+
+            return function debounced() {
+                var context = $scope,
+                args = Array.prototype.slice.call(arguments);
+                $timeout.cancel(timer);
+                timer = $timeout(function() {
+                    timer = undefined;
+                    func.apply(context, args);
+                }, wait || 10);
+            };
+        }
+
+        /**
+        * Build handler to open/close a SideNav; when animation finishes
+        * report completion in console
+        */
+        function buildDelayedToggler(navID) {
+            return debounce(function() {
+                // Component lookup should always be available since we are not using `ng-if`
+                $mdSidenav(navID)
+                .toggle()
+                .then(function () {
+                    $log.debug("toggle " + navID + " is done");
+                });
+            }, 200);
+        }
+
+        function buildToggler(navID) {
+            return function() {
+                // Component lookup should always be available since we are not using `ng-if`
+                $mdSidenav(navID)
+                .toggle()
+                .then(function () {
+                    $log.debug("toggle " + navID + " is done");
+                });
+            };
+        }
+    })
+    .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function () {
+            // Component lookup should always be available since we are not using `ng-if`
+            $mdSidenav('left').close()
+            .then(function () {
+                $log.debug("close LEFT is done");
+            });
+
+        };
+    })
+    .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function () {
+            // Component lookup should always be available since we are not using `ng-if`
+            $mdSidenav('right').close()
+            .then(function () {
+                $log.debug("close RIGHT is done");
+            });
+        };
+    });
+
+</script>
+</body>
+</html>

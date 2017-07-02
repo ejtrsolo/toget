@@ -1,0 +1,18 @@
+<md-content layout-xs="column" layout="row">
+    <section>
+        <md-subheader class="accent-color padding-8">Viajes</md-subheader>
+        <div flex-xs flex-gt-xs="100" layout="column">
+            <md-card md-theme-watch ng-repeat="travel in travels">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Viaje del día {{travel.c01_start_date}}</span>
+                        <!-- <span class="md-subhead">-</span> -->
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Ver</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </section>
+</md-content>

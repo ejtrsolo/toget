@@ -1,0 +1,16 @@
+<md-content layout="column" class="sin-fondo">
+    <section>
+        <md-subheader ng-show="todos.length == 0" style="text-align:center;">No tienes notificaciones</md-subheader>
+        <md-list flex class="notifications">
+            <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+                <img ng-src="{{item.face}}" class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ item.who }}</h3>
+                    <p ng-bind-html="item.notes"></p>
+                    <h4 class="md-list-text-date">{{item.when}}</h4>
+                </div>
+                <md-divider ></md-divider>
+            </md-list-item>
+        </md-list>
+    </section>
+</md-content>

@@ -1,0 +1,31 @@
+<div data-role="page" id="home">
+    <div data-role="header">
+        <h1>Login</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <p>You need to login to view your Facebook profile information</p>
+        <md-button ng-click="login()" class="md-primary" hide-gt-md>
+            Login using Facebook
+        </md-button>
+        <!-- <a target="_blank" href="javascript:;" ng-click="login()" style="text-decoration: none"><button></button></a> -->
+    </div>
+</div>
+
+<div data-role="page" id="profile">
+    <div data-role="header">
+        <h1>Profile</h1>
+    </div>
+    <div data-role="main" class="ui-content" id="listTable">
+        <table id="table" data-role="table" data-mode="column" class="ui-responsive">
+            <thead>
+                <tr><th>Field</th><th>Info</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Name:</td><td>{{data.name}}</td></tr>
+                <tr><td>Gender:</td><td>{{data.gender}}</td></tr>
+                <tr><td>Picture:</td><td><img src="{{data.picture}}"/></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

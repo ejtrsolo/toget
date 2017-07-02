@@ -1,0 +1,32 @@
+<div flex-container="row" class="fondo-cordova" flex-align="center center">
+    <div flex-item="9" class="top-space-padding botton-space-padding" align="center" >
+        <img src="img/logo.png" alt="Bienvenida">
+        <span class="fs-display-1 display-block">{{app_name}}</span>
+    </div>
+</div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <form ng-submit="savePost()">
+        <div flex-xs flex-gt-xs="100" layout="column">
+            <md-card md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{section}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout-align="center center">
+                    <md-input-container class="md-block">
+                        <input type="text" class="input-code" ng-model="data.code" ui-mask="9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+                    </md-input-container>
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start">
+                    <md-button ng-click="register()" class="md-raised btn-lg">
+                        Reenviar
+                    </md-button>
+                    <md-button type="submit" class="md-raised md-primary top-space-btn btn-lg">
+                        Confirmar
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </form>
+</md-content>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="app-main">
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data gap * https://*.google.com  https://*.facebook.com https://*.googleapis.com  https://*.gstatic.com  https://*.googleusercontent.com 'unsafe-inline' 'unsafe-eval'; media-src *; img-src 'self' https://*.gstatic.com https://*.googleapis.com data:; style-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline';">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+        <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/fonts.css">
+
+        <link rel="icon" type="image/png" sizes="32x32" href="img/logo-sf.png">
+        <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"> -->
+
+        <title>Inicio</title>
+
+        <!-- Before body closing tag -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/velocity/velocity.js"></script>
+        <script src="bower_components/moment/min/moment-with-locales.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular/angular-resource.min.js"></script>
+        <script src="bower_components/angular/angular-route.min.js"></script>
+        <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+        <script src="bower_components/lumx/dist/lumx.js"></script>
+        <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-material/angular-material.js"></script>
+
+        <script src="bower_components/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
+        <script type="text/javascript" src="js/sha/sha.js"></script>
+
+        <!-- SCRIPTS para funcionalidad -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+
+
+    </head>
+    <body ng-controller="main">
+        <div>
+            <div class="header toolbar default-primary-color" ng-show="nav_bar_visible">
+                <div class="toolbar__left mr++">
+                    <lx-button ng-click="openNavBar()" lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-menu"></i></lx-button>
+                </div>
+
+                <span class="toolbar__label fs-title tc-white">{{title}}</span>
+
+                <div class="toolbar__right">
+                    <lx-dropdown lx-position="right" lx-over-toggle="true">
+                        <lx-dropdown-toggle>
+                            <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+                        </lx-dropdown-toggle>
+
+                        <lx-dropdown-menu>
+                        <ul>
+                            <li>
+                                <a class="dropdown-link dropdown-link--is-large">
+                                    <i class="mdi mdi-eye"></i>
+                                    <span>Preview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </lx-dropdown-menu>
+                    </lx-dropdown>
+                </div>
+            </div>
+            <div class="content" flex-container="row" flex-align="center center" >
+                <div  layout="column" style="height:500px;" ng-cloak>
+                    <section layout="row" flex>
+                        <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" ng-show="nav_bar_visible">
+                            <md-toolbar class="md-theme-indigo" >
+                                <div class="md-toolbar-tools" ng-click="closeNavBar()">
+                                    <h2 flex md-truncate>Mi cuenta</h2>
+                                    <div class="" aria-label="close">
+                                        <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-chevron-left"></i></lx-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                            <md-content layout-padding >
+                                <md-button ng-click="closeNavBar()" class="md-primary" hide-gt-md>
+                                    Close Sidenav Left
+                                </md-button>
+                            </md-content>
+
+                        </md-sidenav>
+                        <md-content flex>
+                            <div ng-view>
+
+                            </div>
+
+                        </md-content>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
+        <script type="text/javascript">
+            var app = {
+
+                initialize: function() {
+                    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+                },
+
+                onDeviceReady: function() {
+                    this.receivedEvent('deviceready');
+                },
+
+                receivedEvent: function(id) {
+                    window.open = cordova.InAppBrowser.open;
+                    console.log("Haciendo algo");
+                }
+            };
+            app.initialize();
+        </script>
+    </body>
+</html>

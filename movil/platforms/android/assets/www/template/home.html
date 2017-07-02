@@ -1,0 +1,46 @@
+<!-- Mapa de google -->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUcvGAX-s1qleVcwawNUFaJwrklWt7oMg&callback=initMap"></script> -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUcvGAX-s1qleVcwawNUFaJwrklWt7oMg"></script>
+<div class="content" flex-container="row" flex-align="center center" >
+    <div flex-item="12">
+        <div id="map" onload="onSuccess()"></div>
+        <!-- <div map-lazy-load="https://maps.googleapis.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
+            <ng-map  center="41,-87" zoom="3"></ng-map>
+        </div> -->
+    </div>
+</div>
+<script>
+var map;
+function initMap() {
+    var uluru = {lat: -25.363, lng: 131.044};
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+    });
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+}
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
+function onSuccess(position) {
+    var lat = position.coords.latitude;
+    var lang = position.coords.longitude;
+
+    //Google Maps
+    var myLatlng = new google.maps.LatLng(lat,lang);
+    var mapOptions = {zoom: 4,center: myLatlng}
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var marker = new google.maps.Marker({position: myLatlng, map: map});
+}
+function onError(error) {
+    alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+    console.log(error);
+}
+</script>
+<style>
+#map, ng-map{
+    height: {{alto}}px !important;
+}
+</style>
