@@ -6,34 +6,26 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use dmstr\widgets\Alert;
-$this->title = 'Restablecer contraseña';
+
+$this->title = 'Request password reset';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="login-box">
-    <div class="login-logo">
-        <a href="#" class="title-logo"><?=Yii::$app->params['title_style']?></a>
-    </div>
-    <div class="login-logo"></div>
-    <!-- /.login-logo -->
-    <div class="transparent login-box-body">
-        <?= Alert::widget() ?>
-        <p class="login-box-msg"><?= Html::encode($this->title) ?></p>
-        <p>Por favor ingresa tu email. Se enviará un link para restablecer tu contraseña.</p>
+<div class="site-request-password-reset">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+    <p>Please fill out your email. A link to reset password will be sent there.</p>
 
-                    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
-                    <div class="form-group">
-                    <?= Html::a('Regresar', ['site/login'],['class' => 'btn btn-success', 'name' => 'back-button']) ?>
-                        <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary pull-right']) ?>
-                    </div>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
-                <?php ActiveForm::end(); ?>
-            </div>
+                <div class="form-group">
+                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>

@@ -15,39 +15,25 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": ">=2.0.6",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "yiisoft/yii2-authclient": "*",
-        "dmstr/yii2-adminlte-asset": "2.*",
-        "kartik-v/yii2-widget-fileinput": "@dev",
-        "mdmsoft/yii2-admin": "*",
-        "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-mpdf": "*",
-        "kartik-v/yii2-widget-select2": "@dev",
-        "kartik-v/yii2-widgets": "*",
-        "kartik-v/yii2-widget-colorinput": "*",
-        "kartik-v/yii2-tree-manager": "@dev",
-        "philippfrenzel/yii2fullcalendar": "*",
-        "kartik-v/yii2-field-range": "*",
-        "dompdf/dompdf": "^0.7.0"
+        "yiisoft/yii2": "~2.0.6",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0"
     },
     "require-dev": {
-        "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1"
     },
     "config": {
-        "process-timeout": 1800
-    },
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
+        "process-timeout": 1800,
+        "fxp-asset":{
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
-    },
-    "scripts": {
-        "post-install-cmd": "php init --env=Development --overwrite=n"
     }
 }

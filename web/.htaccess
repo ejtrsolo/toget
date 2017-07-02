@@ -3,23 +3,24 @@ Options +FollowSymlinks
 RewriteEngine On
 
 # deal with super first
-RewriteCond %{REQUEST_URI} ^/proyects/yiired/(super)
+RewriteCond %{REQUEST_URI} ^/proyects/toget/web/(super)
 RewriteRule ^super/assets/(.*)$ backend/web/assets/$1 [L]
 RewriteRule ^super/css/(.*)$ backend/web/css/$1 [L]
 RewriteRule ^super/js/(.*)$ backend/web/js/$1 [L]
 RewriteRule ^super/images/(.*)$ backend/web/images/$1 [L]
 
-RewriteCond %{REQUEST_URI} !^/proyects/yiired/backend/web/(assets|css|js|images)/
-RewriteCond %{REQUEST_URI} ^/proyects/yiired/(super)
+RewriteCond %{REQUEST_URI} !^/proyects/toget/web/backend/web/(assets|css|js|images)/
+RewriteCond %{REQUEST_URI} ^/proyects/toget/web/(super)
 RewriteRule ^.*$ backend/web/index.php [L]
 
 
-RewriteCond %{REQUEST_URI} ^/proyects/yiired/(assets|css|images)
+RewriteCond %{REQUEST_URI} ^/proyects/toget/web/(assets|css|images)
 RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
 RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
 RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
 
-RewriteCond %{REQUEST_URI} !^/proyects/yiired/(frontend|backend)/web/(assets|css|js|images)/
+RewriteCond %{REQUEST_URI} !^/proyects/toget/web/(frontend|backend)/web/(assets|css|js|images)/
 RewriteCond %{REQUEST_URI} !index.php
 RewriteCond %{REQUEST_FILENAME} !-f [OR]
 RewriteCond %{REQUEST_FILENAME} !-d

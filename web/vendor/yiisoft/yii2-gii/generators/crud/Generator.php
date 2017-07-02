@@ -243,14 +243,6 @@ class Generator extends \yii\gii\Generator
             return "\$form->field(\$model, '$attribute')->checkbox()";
         } elseif ($column->type === 'text') {
             return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
-        } elseif ($column->type === 'date') {
-            return "\$form->field(\$model, '$attribute')->widget(kartik\widgets\DatePicker::className(), [
-        'type' => kartik\widgets\DatePicker::TYPE_COMPONENT_APPEND,
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'dd/mm/yyyy'
-        ]
-    ])";
         } else {
             if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
                 $input = 'passwordInput';

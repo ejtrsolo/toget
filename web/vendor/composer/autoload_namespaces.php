@@ -6,9 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'cebe\\gravatar\\' => array($vendorDir . '/cebe/yii2-gravatar'),
-    'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src'),
+    'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
-    'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
+    'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
 );

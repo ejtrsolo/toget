@@ -4,7 +4,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '4xunXTYgDQjBdOSD6pf4dysrQS4c03Xu',
+            'cookieValidationKey' => 'N2wmg00NRPpfcyFM6tu8wijCZn2rOLxB',
         ],
     ],
 ];
@@ -14,7 +14,6 @@ if (!YII_ENV_TEST) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        //'allowedIPs' => [''], //Poner esta linea si no quiere verse el foonter debugger
     ];
 
     $config['bootstrap'][] = 'gii';

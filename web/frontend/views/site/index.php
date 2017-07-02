@@ -2,8 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->params['title'];
-$this->blocks['content-header']='';
+$this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 

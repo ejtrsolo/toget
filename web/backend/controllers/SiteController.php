@@ -1,11 +1,8 @@
 <?php
 namespace backend\controllers;
 
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
 use Yii;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
+use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -25,7 +22,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'request-password-reset', 'request-password'],
+                        'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                     [
@@ -56,11 +53,21 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
+    /**
+     * Login action.
+     *
+     * @return string
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -68,7 +75,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->loginBackend()) {
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -77,60 +84,15 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Logout action.
+     *
+     * @return string
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $this->layout = 'main-login';
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Revise su correo electrónico para obtener más instrucciones.');
-
-                return $this->redirect(['site/login']);
-            } else {
-                Yii::$app->session->setFlash('error', 'Lo sentimos, no somos capaces de restablecer la contraseña de correo proporcionado.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        $this->layout = 'main-login';
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'Su nueva contraseña a sido guardada.');
-
-            return $this->redirect(['site/login']);
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
     }
 }

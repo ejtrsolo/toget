@@ -10,32 +10,20 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => [
-        'log',
-    ],
-    'modules' => [
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'layout' => '@app/views/layouts/main.php',
-            'controllerMap' => [
-                'assignment' => [
-                    'class' => 'mdm\admin\controllers\AssignmentController',
-                    'userClassName' => 'common\models\User',
-                    'idField' => 'id'
-                ]
-            ],
-            'menus' => [
-                'assignment' => [
-                    'label' => 'Grand Access' // change label
-                ],
-                'route' => null, // disable menu
-            ],
-        ],
-    ],
+    'bootstrap' => ['log'],
+    'modules' => [],
     'components' => [
+        'request' => [
+            'csrfParam' => '_csrf-backend',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+        ],
+        'session' => [
+            // this is the name of the session cookie used for login on the backend
+            'name' => 'advanced-backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -49,19 +37,16 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'request'=>[
+            'class' => 'common\components\Request',
+            'web'=> '/backend/web',
+            'adminUrl' => '/admin'
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
-        ],
-        'request'=>[
-            'class' => 'common\components\Request',
-            'web'=> '/backend/web',
-            'adminUrl' => '/super'
         ],
     ],
     'params' => $params,

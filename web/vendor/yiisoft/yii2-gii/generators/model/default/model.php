@@ -42,11 +42,6 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     {
         return '<?= $generator->generateTableName($tableName) ?>';
     }
-
-    public function getPrefix(){ <?php $name_table = $generator->generateTableName($tableName); ?>
-
-        return '<?=substr($name_table,0,3)?>';
-    }
 <?php if ($generator->db !== 'db'): ?>
 
     /**

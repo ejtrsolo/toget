@@ -3,10 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            //'dsn' => 'mysql:host=localhost;dbname=yiired',
             'dsn' => 'mysql:host=localhost;dbname=toget',
             'username' => 'root',
-            'password' => 'rootpass',
+            'password' => 'mithzi',
             'charset' => 'utf8',
         ],
         'mailer' => [
@@ -15,7 +14,7 @@ return [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => false,
+            'useFileTransport' => true,
         ],
     ],
 ];
