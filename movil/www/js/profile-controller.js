@@ -3,6 +3,5 @@ angular.module("app-main")
     $scope.$parent.title = "Perfil";
     $scope.$parent.nav_bar_visible = false;
     $scope.$parent.fondo = '';
-    $scope.$parent.credit = false;
     $scope.todos = [];
 });

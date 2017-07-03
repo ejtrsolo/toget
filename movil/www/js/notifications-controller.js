@@ -2,6 +2,8 @@ angular.module("app-main")
 .controller('NotificationsController', function($scope, $http, $timeout, LxNotificationService){
     $scope.$parent.title = "Notificaciones";
     var imagePath = 'img/logo.png';
+    $scope.$parent.nav_bar_visible = false;
+    $scope.$parent.fondo = '';
     $scope.todos = [
         {
             face : imagePath,

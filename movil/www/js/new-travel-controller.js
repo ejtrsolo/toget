@@ -15,16 +15,16 @@ angular.module("app-main")
         c01_start_lat: '',
         c01_end_lat: ''
     };
+    // Iniciar mapa de Google Maps
+    initMap();
     // Obtener la posición actual.
     navigator.geolocation.getCurrentPosition(function (position) {
         $scope.Travel.c01_start_lat = position.coords.latitude;
         $scope.Travel.c01_start_lng = position.coords.longitude;
-        //Google Maps
-        initMap();
+        // Buscar ubicación del punto en donde estoy.
         var myLatlng = new google.maps.LatLng($scope.Travel.c01_start_lat, $scope.Travel.c01_start_lng);
         geocoder.geocode({'location': myLatlng}, function(results, status) {
             if (status === 'OK') {
-                //console.log(results[0]);
                 if (results[0]) {
                     map.setZoom(15);
                     $scope.inicio = results[0].formatted_address;
@@ -39,18 +39,14 @@ angular.module("app-main")
         $scope.Travel.c01_start_lat = myLatlng.lat();
         $scope.Travel.c01_start_lng = myLatlng.lng();
     }, function (error) {
-        initMap();
         console.log(error);
     }, { timeout: 30000 });
-    $scope.geocodePoint = function (latlng) {
-
-    }
     function initMap() {
-        var uluru = {lat: 22.746943, lng: -102.518532};
+        var mexico = {lat: 22.746943, lng: -102.518532};
         directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#8b0013" } });
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
-            center: uluru,
+            center: mexico,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true,
             streetViewControl: false,

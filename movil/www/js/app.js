@@ -29,6 +29,10 @@ angular.module("app-main", ["lumx", "ngRoute", "ngResource", 'ui.mask', 'ngMater
 			controller: "MessagesController",
 			templateUrl: "template/messages.html"
 		})
+		.when("/messages/:id", {
+			controller: "ViewMessagesController",
+			templateUrl: "template/view-messages.html"
+		})
 		.when("/profile", {
 			controller: "ProfileController",
 			templateUrl: "template/profile.html"
@@ -57,7 +61,11 @@ angular.module("app-main", ["lumx", "ngRoute", "ngResource", 'ui.mask', 'ngMater
             controller: "RegisterController",
             templateUrl: "template/register.html"
         })
-		;
+        .when("/error/:error"){
+            controller: "ErrorController",
+            templateUrl: "template/error.html"
+        }
+        .otherwise("/error");
 
 })
 ;

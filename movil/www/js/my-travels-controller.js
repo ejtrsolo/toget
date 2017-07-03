@@ -1,6 +1,8 @@
 angular.module("app-main")
 .controller('MyTravelsController', function($scope, $http){
     $scope.$parent.title = "Mis viajes";
+    $scope.$parent.nav_bar_visible = false;
+    $scope.$parent.fondo = '';
     $scope.travels = [{
         c01_start_date:'2017-04-02 00:00:00'
     }];

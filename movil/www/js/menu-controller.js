@@ -4,7 +4,7 @@ angular.module("app-main")
 	$scope.nav_bar_visible = true;
 	$scope.fondo = '';
 	$scope.credit = false;
-	$scope.url_server = 'http://localhost/proyects/yiired/app/';
+	$scope.url_server = 'http://localhost/proyects/toget/web/app/';
 	$scope.user = {};
 	$scope.user.name = "Ernesto";
 	$scope.user.photo = "img/logo.png";
