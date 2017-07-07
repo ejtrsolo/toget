@@ -7,6 +7,7 @@
 * Node JS 6.x
 * Apache Cordova 7.x
 * Depends of Yii2
+
 **NOTE:** You can install XAMPP to complete the requirements.
 
 ### Install development environment

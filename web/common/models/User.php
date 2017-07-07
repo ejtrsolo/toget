@@ -7,6 +7,8 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * User model
  *
@@ -25,6 +27,8 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const ADMINISTRADOR = 1;
+    const NORMAL = 2;
 
 
     /**
@@ -32,7 +36,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return '{{%a01_user}}';
     }
 
     /**
@@ -45,12 +49,24 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username'=>'Usuario',
+            'password_hash'=>'Contraseña'
+        ];
+    }
+
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
+            [['email'], 'required'],
+            [['email'], 'unique'],
+            [['type'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
@@ -105,7 +121,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Finds out if password reset token is valid
      *
      * @param string $token password reset token
-     * @return bool
+     * @return boolean
      */
     public static function isPasswordResetTokenValid($token)
     {
@@ -146,7 +162,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Validates password
      *
      * @param string $password password to validate
-     * @return bool if password provided is valid for current user
+     * @return boolean if password provided is valid for current user
      */
     public function validatePassword($password)
     {
@@ -185,5 +201,31 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function getProfile(){
+        return $this->hasOne(Profile::className(), ['a01_id' => 'id']);
+    }
+    public function getType(){
+        return $this->hasOne(Option::className(), ['g02_id' => 'tipo']);
+    }
+    public function getMypersons(){
+        return $this->hasMany(Relacion::className(), ['a01_id' => 'id'])->andWhere(['r03_status'=>1]);
+    }
+    public function getMyobjects(){
+        return $this->hasMany(RelacionPermisos::className(), ['a01_id' => 'id'])->andWhere(['r04_status'=>1]);
+    }
+
+    public static function getUsuarios(){
+        $usuarios = User::find()->all();
+        $usuarios = ArrayHelper::map($usuarios, 'id', function ($model)
+        {
+            return $model->username.' - '.$model->email;
+        });
+        return $usuarios;
+    }
+    public static function getUsuarios2(){
+        $usuarios = User::find()->all();
+        $usuarios = ArrayHelper::map($usuarios, 'id', 'username');
+        return $usuarios;
     }
 }
